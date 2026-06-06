@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ついっちらんくりんか～</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bfd3eedc79.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg-light: #f8f9fa;       /* Google Light Background */
+            --panel-bg: #ffffff;       /* Google Card Background */
+            --input-bg: #ffffff;       /* Google Input Background */
+            --input-border: #dadce0;   /* Google Input Border */
+            --text-primary: #202124;   /* Google Primary Text */
+            --text-heading: #202124;   /* Google Heading Text */
+            --text-secondary: #5f6368; /* Google Muted Text */
+            --accent-google: #1a73e8;  /* Google Blue */
+            --accent-google-hover: #1b66c9;
+            --accent-google-active: #174ea6;
+            --twitch-purple: #9146FF;  /* Twitch Brand Color */
+            --twitch-purple-hover: #772ce8;
+            --error-red: #d93025;
+            --success-green: #1e8e3e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', 'Noto Sans JP', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card {
+            background-color: var(--panel-bg);
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 40px;
+            width: 100%;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-heading);
+            margin-bottom: 32px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 13px 15px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--accent-google);
+            box-shadow: inset 0 0 0 1px var(--accent-google);
+        }
+
+        .form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f6368' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .riot-id-input {
+            display: grid;
+            grid-template-columns: 1fr 80px;
+            gap: 12px;
+        }
+
+        .tag-prefix {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .tag-container {
+            position: relative;
+        }
+
+        .tag-container input {
+            padding-left: 28px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px 24px;
+            background-color: var(--accent-google);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.25px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 36px;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-google-hover);
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+        }
+
+        .btn:active {
+            background-color: var(--accent-google-active);
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15);
+        }
+
+        .btn:disabled {
+            background-color: rgba(60,64,67,0.12);
+            color: rgba(60,64,67,0.38);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Specific styles for Twitch button */
+        #twitch-login-container .btn {
+            background-color: var(--twitch-purple);
+            font-size: 0.95rem;
+            height: 40px;
+        }
+        
+        #twitch-login-container .btn:hover {
+            background-color: var(--twitch-purple-hover);
+        }
+
+        #submitBtn {
+            height: 40px;
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+
+        .loader {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .form-message-box {
+            margin-top: 24px;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: none;
+            animation: formMessageFadeIn 0.3s ease-out;
+            word-break: break-all;
+            text-align: center;
+        }
+
+        @keyframes formMessageFadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* LoL Rank Card styles */
+        .rank-card {
+            margin-top: 20px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            overflow: hidden;
+            animation: formMessageFadeIn 0.4s ease-out;
+        }
+
+        .rank-card-header {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 10px 16px 8px;
+            border-bottom: 1px solid #f1f3f4;
+            background: #f8f9fa;
+        }
+
+        .rank-card-body {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            gap: 14px;
+            background: #ffffff;
+        }
+
+        .rank-emblem {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .rank-info {
+            flex: 1;
+        }
+
+        .rank-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .rank-lp {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .rank-stats {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .rank-wl {
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .rank-winrate {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .rank-winrate-strong {
+            color: var(--accent-google);
+            font-weight: 600;
+        }
+
+        .twitch-info-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #f8f9fa;
+            border-top: 1px solid #f1f3f4;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .twitch-info-row i {
+            color: var(--twitch-purple);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Form Card (連携設定) -->
+        <div class="card">
+            <h2><i class="fa-solid fa-link"></i> ついっちらんくりんか～</h2>
+            <form id="linkForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Twitch アカウント</label>
+                    {% if twitch_id %}
+                    <div id="twitch-user-container" style="display: flex; align-items: center; justify-content: center; gap: 10px; background-color: #f1f3f4; padding: 12px 16px; border-radius: 4px; border: 1px solid #dadce0;">
+                        <i class="fa-brands fa-twitch" style="color: var(--twitch-purple); font-size: 1.2rem;"></i>
+                        <span id="twitch-username-display" style="font-weight: 500; color: var(--text-primary); font-size: 0.95rem;">{{ display_name or twitch_id }} (ログイン済み)</span>
+                    </div>
+                    {% else %}
+                    <div id="twitch-login-container">
+                        <a href="/auth/twitch/login" class="btn">
+                            <i class="fa-brands fa-twitch"></i> Twitchでログイン
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="game_name">Riot ID</label>
+                    <div class="riot-id-input">
+                        <input type="text" id="game_name" name="game_name" required>
+                        <div class="tag-container">
+                            <span class="tag-prefix">#</span>
+                            <input type="text" id="tag_line" name="tag_line" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="platform">LoL サーバー</label>
+                    <select id="platform" name="platform" required>
+                        <option value="jp1" selected>日本 (JP1)</option>
+                        <option value="kr">韓国 (KR)</option>
+                        <option value="na1">北アメリカ (NA1)</option>
+                        <option value="euw1">EU西 (EUW1)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn" {% if not twitch_id %}disabled title="先にTwitchでログインしてください"{% endif %}>
+                    <span class="loader" id="btnLoader"></span>
+                    <span id="btnText">連携</span>
+                </button>
+            </form>
+
+            <!-- 連携通知用のメッセージ領域 -->
+            <div class="form-message-box" id="formMessage"></div>
+        </div>
+
+        {% if twitch_id %}
+        <!-- OBS Overlay Card -->
+        <div class="card" style="margin-top: 24px;">
+            <h2><i class="fa-solid fa-desktop"></i> OBS オーバーレイ URL</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.4;">
+                OBS Studioの「ブラウザソース」に追加することで、配信画面上にLoLのランク付きチャットを表示できます。
+            </p>
+            <div class="form-group" style="margin-bottom: 12px;">
+                <label>オーバーレイURL</label>
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 8px;">
+                    <input type="text" id="overlayUrlInput" readonly style="background-color: #f1f3f4; font-family: monospace; font-size: 0.9rem;" value="">
+                    <button type="button" class="btn" id="copyUrlBtn" onclick="copyOverlayUrl()" style="width: auto; padding: 0 16px;">
+                        <i class="fa-solid fa-copy"></i> コピー
+                    </button>
+                </div>
+            </div>
+            <div id="copySuccessMsg" style="font-size: 0.82rem; color: var(--success-green); display: none; text-align: center;">
+                <i class="fa-solid fa-circle-check"></i> URLをクリップボードにコピーしました！
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Riot Games Disclaimer -->
+        <footer style="margin-top: 24px; text-align: center; font-size: 0.7rem; color: var(--text-secondary); line-height: 1.5; padding: 0 10px;">
+            ついっちらんくりんか～ is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+        </footer>
+
+    </div>
+
+    <script>
+        const API_URL = '/api';
+
+        // 連携フォーム送信
+        async function submitForm(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const btnLoader = document.getElementById('btnLoader');
+            const btnText = document.getElementById('btnText');
+
+            const formMsg = document.getElementById('formMessage');
+            formMsg.style.display = 'none';
+            formMsg.style.background = 'none';
+            formMsg.innerHTML = '';
+
+            submitBtn.disabled = true;
+            btnLoader.style.display = 'block';
+            btnText.textContent = '取得中...';
+
+            const payload = {
+                game_name: form.game_name.value.trim(),
+                tag_line: form.tag_line.value.trim(),
+                platform: form.platform.value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/link`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    const errorDetail = result.detail || '不明なエラーが発生しました。';
+                    throw new Error(errorDetail);
+                }
+
+                let statsHtml = '';
+                const tierLower = (result.tier || '').toLowerCase();
+                const BASE = 'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/';
+                const RANK_EMBLEMS = {
+                    'iron':        BASE + 'iron.svg',
+                    'bronze':      BASE + 'bronze.svg',
+                    'silver':      BASE + 'silver.svg',
+                    'gold':        BASE + 'gold.svg',
+                    'platinum':    BASE + 'platinum.svg',
+                    'emerald':     BASE + 'emerald.svg',
+                    'diamond':     BASE + 'diamond.svg',
+                    'master':      BASE + 'master.svg',
+                    'grandmaster': BASE + 'grandmaster.svg',
+                    'challenger':  BASE + 'challenger.svg',
+                };
+                const emblems = RANK_EMBLEMS[tierLower];
+                const tierDisplay = result.tier
+                    ? result.tier.charAt(0) + result.tier.slice(1).toLowerCase()
+                    : 'Unranked';
+
+                if (result.tier) {
+                    const wins = result.wins || 0;
+                    const losses = result.losses || 0;
+                    const totalGames = wins + losses;
+                    const winRate = totalGames > 0 ? Math.round((wins / totalGames) * 100) : 0;
+                    const lp = result.league_points || 0;
+                    const emblemImg = emblems
+                        ? `<img src="${emblems}" class="rank-emblem" alt="${tierDisplay}" onerror="this.style.display='none'">`
+                        : '';
+
+                    statsHtml = `
+                        <div class="rank-card">
+                            <div class="rank-card-header">ソロランク</div>
+                            <div class="rank-card-body">
+                                ${emblemImg}
+                                <div class="rank-info">
+                                    <div class="rank-name">${escapeHtml(tierDisplay)} ${escapeHtml(result.rank)}</div>
+                                    <div class="rank-lp">${lp} LP</div>
+                                </div>
+                                <div class="rank-stats">
+                                    <div class="rank-wl">${wins}勝 ${losses}敗</div>
+                                    <div class="rank-winrate">勝率 <span class="rank-winrate-strong">${winRate}%</span></div>
+                                </div>
+                            </div>
+                            <div class="twitch-info-row">
+                                <i class="fa-brands fa-twitch"></i>
+                                ${escapeHtml(result.twitch_id)}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                formMsg.style.display = 'block';
+                formMsg.style.background = 'none';
+                formMsg.style.border = 'none';
+                formMsg.style.color = 'var(--success-green)';
+                formMsg.innerHTML = `
+                    <div style="font-weight: 500; color: var(--success-green); display: flex; align-items: center; gap: 6px; justify-content: center;">
+                        <i class="fa-solid fa-circle-check"></i> アカウントの連携が完了しました。
+                    </div>
+                    ${statsHtml}
+                `;
+
+
+            } catch (err) {
+                formMsg.style.display = 'block';
+                formMsg.style.background = 'rgba(255, 70, 85, 0.08)';
+                formMsg.style.border = '1px solid rgba(255, 70, 85, 0.15)';
+                formMsg.style.color = 'var(--error-red)';
+                formMsg.innerHTML = `❌ エラー: ${escapeHtml(err.message)}`;
+            } finally {
+                submitBtn.disabled = false;
+                btnLoader.style.display = 'none';
+                btnText.textContent = '連携';
+            }
+        }
+        {% if twitch_id %}
+        window.addEventListener('DOMContentLoaded', () => {
+            const overlayUrlInput = document.getElementById('overlayUrlInput');
+            if (overlayUrlInput) {
+                overlayUrlInput.value = `${window.location.origin}/overlay?channel={{ twitch_id }}`;
+            }
+        });
+
+        async function copyOverlayUrl() {
+            const input = document.getElementById('overlayUrlInput');
+            const btn = document.getElementById('copyUrlBtn');
+            const successMsg = document.getElementById('copySuccessMsg');
+
+            try {
+                await navigator.clipboard.writeText(input.value);
+                successMsg.style.display = 'block';
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> コピー完了';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                    btn.innerHTML = '<i class="fa-solid fa-copy"></i> コピー';
+                }, 3000);
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                input.select();
+                document.execCommand('copy');
+            }
+        }
+        {% endif %}
+
+
+
+        function escapeHtml(str) {
+            if (typeof str !== 'string') return '';
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function escapeJs(str) {
+            if (typeof str !== 'string') return '';
+            return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+        }
+    </script>
+</body>
+
+</html>
