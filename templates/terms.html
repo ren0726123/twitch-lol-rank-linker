@@ -208,10 +208,20 @@
             </div>
 
             <div style="text-align: center;">
-                <a href="/" class="btn">
+                <a href="/" class="btn" id="backBtn">
                     <i class="fa-solid fa-arrow-left"></i> トップページに戻る
                 </a>
             </div>
+
+            <script>
+                document.getElementById('backBtn').addEventListener('click', function(e) {
+                    // 新しいタブ/ウィンドウで開かれている場合はタブを閉じる
+                    if (window.opener || window.history.length === 1) {
+                        e.preventDefault();
+                        window.close();
+                    }
+                });
+            </script>
         </div>
 
         <footer>
