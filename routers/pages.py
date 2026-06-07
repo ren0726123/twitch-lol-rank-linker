@@ -23,6 +23,16 @@ async def get_index(request: Request):
     )
 
 
+@router.get("/terms")
+async def get_terms(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="terms.html",
+        context={"request": request},
+    )
+
+
+
 @router.get("/overlay")
 async def get_overlay():
     html_path = os.path.join(BASE_DIR, "templates", "overlay.html")

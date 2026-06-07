@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用規約・プライバシーポリシー - ついっちらんくりんか～</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bfd3eedc79.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg-light: #f8f9fa;       /* Google Light Background */
+            --panel-bg: #ffffff;       /* Google Card Background */
+            --text-primary: #202124;   /* Google Primary Text */
+            --text-heading: #202124;   /* Google Heading Text */
+            --text-secondary: #5f6368; /* Google Muted Text */
+            --accent-google: #1a73e8;  /* Google Blue */
+            --accent-google-hover: #1b66c9;
+            --accent-google-active: #174ea6;
+            --twitch-purple: #9146FF;  /* Twitch Brand Color */
+            --input-border: #dadce0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', 'Noto Sans JP', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card {
+            background-color: var(--panel-bg);
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 40px;
+            width: 100%;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-heading);
+            margin-bottom: 24px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--accent-google);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e8eaed;
+            padding-bottom: 6px;
+        }
+
+        .subsection {
+            margin-bottom: 16px;
+        }
+
+        .subsection-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 6px;
+        }
+
+        p, ul {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: auto;
+            min-width: 120px;
+            padding: 8px 16px;
+            background-color: var(--bg-light);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 24px;
+        }
+
+        .btn:hover {
+            background-color: #f1f3f4;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3);
+        }
+
+        footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+            <h2><i class="fa-solid fa-shield-halved"></i> 利用規約・プライバシーポリシー</h2>
+
+            <!-- プライバシーポリシー -->
+            <div class="section-title">プライバシーポリシー</div>
+            
+            <div class="subsection">
+                <div class="subsection-title">1. 情報の取得・保存について</div>
+                <p>
+                    本ツールは、TwitchのOAuth認証を通じて利用者の <strong>Twitch ID（ログイン名）</strong> および <strong>表示名</strong> を取得します。
+                    また、Riot Games APIを通じて <strong>Riot ID（ゲーム名とタグライン）</strong>、<strong>PUUID</strong>、および <strong>League of Legendsのソロランク情報（ティア、ランク、リーグポイント、勝敗数、最多プレイチャンピオン等）</strong> を取得し、データベースに保存します。
+                </p>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">2. 情報の利用目的</div>
+                <p>
+                    取得および保存した連携情報は、配信ソフト（OBS Studio等）上に表示するためのチャットオーバーレイ機能（LoLランク情報表示）の提供、および本ウェブサイトにおける連携情報の確認にのみ利用します。
+                </p>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">3. 情報の公開仕様について</div>
+                <p>
+                    本ツールで生成される配信チャット用オーバーレイURLには、アクセス制限が設けられていません。
+                    オーバーレイURLを知っている第三者であれば、誰でも対象チャンネルの連携情報（Riot IDおよびLoLのランク情報等）を閲覧できる仕様となっております。オーバーレイURLの取り扱いおよび公開範囲には十分ご注意ください。
+                </p>
+            </div>
+
+            <!-- 利用規約 -->
+            <div class="section-title">利用規約</div>
+
+            <div class="subsection">
+                <div class="subsection-title">1. 免責事項</div>
+                <p>
+                    本ツールは個人によって開発された無料のツールであり、現状有姿で提供されます。
+                    本ツールの利用に伴い発生した予期せぬ不具合、データの紛失、サービスの停止、または遅延等に関して、開発者は一切の責任を負いません。
+                    また、Riot APIやTwitch APIの仕様変更、その他開発者の判断により、本ツールは事前通知なく変更・停止・終了する場合があります。
+                </p>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">2. 禁止事項およびデータの削除</div>
+                <p>
+                    本ツールを利用するにあたり、以下の行為を禁止します。
+                </p>
+                <ul>
+                    <li>本人の承諾を得ずに他人のRiot IDを勝手に自身のアカウントに紐付けるなど、他者に精神的苦痛や不利益を与える嫌がらせ行為。</li>
+                    <li>その他、本ツールの安定した運営やAPI提供元への迷惑となる行為。</li>
+                </ul>
+                <p>
+                    禁止行為や不正な連携が確認された場合、開発者の裁量により予告なく連携データを削除する場合があります。
+                </p>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">3. Riot Games 免責事項（Legal Jibber Jabber）</div>
+                <p>
+                    ついっちらんくりんか～は、Riot Gamesによって支援・認定されているものではなく、Riot Games、またはRiot Gamesのコンテンツ制作や管理に公式に関与している人物の見解や意見を反映しているものではありません。
+                    Riot Gamesおよび関連するすべてのプロパティは、Riot Games, Inc.の商標または登録商標です。
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="/" class="btn">
+                    <i class="fa-solid fa-arrow-left"></i> トップページに戻る
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 ついっちらんくりんか～
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
